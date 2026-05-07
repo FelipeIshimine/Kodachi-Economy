@@ -2,7 +2,8 @@
     "name": "KodachiGames.Economy.Editor",
     "rootNamespace": "KodachiGames.Economy.Editor",
     "references": [
-        "KodachiGames.Economy"
+        "KodachiGames.Economy",
+        "SelectorAttributes.Editor"
     ],
     "includePlatforms": [
         "Editor"
