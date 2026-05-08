@@ -17,7 +17,7 @@ namespace KodachiGames.Economy
         {
             var inventory = _inventories.Get(inventoryKey);
 
-            if (inventory.HasProduct(product))
+            if (!product.Stackable && inventory.HasProduct(product))
                 return new PurchaseAlreadyOwned();
 
             if (!product.Stock.IsAvailable)

@@ -5,36 +5,48 @@ namespace KodachiGames.Economy
 {
     public class Inventory
     {
-        private readonly HashSet<string> _ownedProductIds = new();
+        private readonly Dictionary<string, int> _productCounts = new();
 
         public event Action<ProductDefinition> OnProductGranted;
         public event Action<ProductDefinition> OnProductRevoked;
 
         public bool HasProduct(ProductDefinition product) =>
-            _ownedProductIds.Contains(product.Id);
+            _productCounts.TryGetValue(product.Id, out var count) && count > 0;
 
-        public void Grant(ProductDefinition product)
+        public int GetCount(ProductDefinition product) =>
+            _productCounts.TryGetValue(product.Id, out var count) ? count : 0;
+
+        public void Grant(ProductDefinition product, int quantity = 1)
         {
-            _ownedProductIds.Add(product.Id);
+            _productCounts.TryGetValue(product.Id, out var current);
+            _productCounts[product.Id] = current + quantity;
             OnProductGranted?.Invoke(product);
         }
 
-        public void Revoke(ProductDefinition product)
+        public void Revoke(ProductDefinition product, int quantity = 1)
         {
-            _ownedProductIds.Remove(product.Id);
+            if (!_productCounts.TryGetValue(product.Id, out var current)) return;
+            var next = current - quantity;
+            if (next <= 0)
+                _productCounts.Remove(product.Id);
+            else
+                _productCounts[product.Id] = next;
             OnProductRevoked?.Invoke(product);
         }
 
-        internal InventorySaveData ToSaveData() => new()
+        internal InventorySaveData ToSaveData()
         {
-            OwnedProductIds = new List<string>(_ownedProductIds)
-        };
+            var entries = new List<InventorySaveData.Entry>();
+            foreach (var kvp in _productCounts)
+                entries.Add(new InventorySaveData.Entry { ProductId = kvp.Key, Count = kvp.Value });
+            return new InventorySaveData { Entries = entries };
+        }
 
         internal void LoadFromSaveData(InventorySaveData data)
         {
-            _ownedProductIds.Clear();
-            foreach (var id in data.OwnedProductIds)
-                _ownedProductIds.Add(id);
+            _productCounts.Clear();
+            foreach (var entry in data.Entries)
+                _productCounts[entry.ProductId] = entry.Count;
         }
     }
 }

@@ -2,7 +2,9 @@
 
 namespace KodachiGames.Economy
 {
-	public abstract class PurchaseResult { }
+	public abstract class PurchaseResult
+	{
+	}
 
 	public sealed class PurchaseSuccess : PurchaseResult { }
 

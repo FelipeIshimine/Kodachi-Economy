@@ -10,5 +10,12 @@
   "dependencies": {
     "com.kodachigames.persistence": "0.1.0",
     "com.unity.nuget.newtonsoft-json": "3.2.1"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Economy Demos",
+      "description": "Interactive demos for Currency, Wallet, Inventory, and Shop systems. Add EconomyTestRunnerBehaviour to a UIDocument GameObject and pick a test from the TypeSelector field.",
+      "path": "Samples~/Economy Demos"
+    }
+  ]
 }

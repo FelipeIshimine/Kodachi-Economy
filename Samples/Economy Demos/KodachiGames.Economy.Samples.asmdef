@@ -1,0 +1,21 @@
+{
+    "name": "KodachiGames.Economy.Samples",
+    "rootNamespace": "KodachiGames.Economy.Samples",
+    "references": [
+        "KodachiGames.Economy",
+        "KodachiGames.UI",
+        "KodachiGames.Persistence",
+        "UnityServiceLocator",
+        "SelectorAttributes",
+        "Newtonsoft.Json"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
