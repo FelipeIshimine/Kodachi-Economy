@@ -36,7 +36,7 @@ namespace KodachiGames.Economy
         internal async Awaitable LoadAsync(WalletKey key, CancellationToken ct)
         {
             var persistenceKey = PersistenceKey(key);
-            if (!_persistence.Exists(persistenceKey)) return;
+            if (!await _persistence.ExistsAsync(persistenceKey, ct)) return;
 
             var data = await _persistence.LoadAsync<WalletSaveData>(persistenceKey, ct);
             _wallets[key].LoadFromSaveData(data);
