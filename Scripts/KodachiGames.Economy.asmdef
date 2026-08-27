@@ -4,8 +4,7 @@
     "references": [
         "UnityServiceLocator",
         "SelectorAttributes",
-        "KodachiGames.Persistence",
-        "Newtonsoft.Json"
+        "KodachiGames.Persistence"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
