@@ -346,7 +346,7 @@ Use TypeSelector on `ProductDefinition.Requirements[]` to add custom types.
 
 - **KodachiPersistence** — `IPersistenceBackend` for save/load wallet and inventory state
 - **Unity-Service-Locator** — Resolve wallets, inventories, and shop service
-- **Newtonsoft.Json** — JSON serialization
+- **Unity `JsonUtility`** — JSON serialization (via `IPersistenceBackend`; no external dependency)
 
 ## Tooling
 

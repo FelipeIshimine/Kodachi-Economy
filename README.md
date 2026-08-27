@@ -98,4 +98,4 @@ public class LevelRequirement : IAcquisitionRequirement
 ## Dependencies
 
 - `com.kodachigames.persistence` — `IPersistenceBackend` for save/load
-- `com.unity.nuget.newtonsoft-json` — JSON serialization
+- Unity `JsonUtility` — JSON serialization (via `IPersistenceBackend`; no external dependency)
